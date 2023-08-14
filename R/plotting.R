@@ -6,7 +6,7 @@ data(ontology, envir=environment())
 data(schematics, envir=environment())
 
 
-suggestions<-function(dataset, normalize.by=NULL, exclude.below=10, reduce.below=100, clusters=7){
+suggestions<-function(dataset, normalize.by=NULL, exclude.below=5, reduce.below=100, clusters=7){
 dataset$acronym<-as.character(dataset$acronym)
 tableCount<-table(dataset$acronym, dataset$animal)
 tableCount <-tableCount[order(tableCount[,1], decreasing=TRUE),]
@@ -858,10 +858,13 @@ dot.plot<-function (dataset, device = TRUE, region.lab = "Input region:", xlab= 
   counts <- log10(counts)
 
     if (device) {
-      quartz(width = 7.036585, height = 0.2099039 * nrow(counts))
+      #quartz(width = 7.036585, height = 0.2099039 * nrow(counts))
+      quartz(width = 17.036585, height = 20.2099039)
     }
+    quartz(width = 17.036585, height = 20.2099039)
     layout(matrix(c(1, 1, 1, 2, 2, 2, 2), nrow = 1))
-    par(mar = c(4, 0, 4, 0))
+    par(mar = c(4, 2, 4, 2))
+    par(mar=rep(1,4))
     plot(rep(2.5, nrow(counts)), nrow(counts):1, col = 0, 
          axes = F, ylim = c(0.5, nrow(counts) + 0.5), ylab = "", 
          xlab = "", xlim = c(1, 5))

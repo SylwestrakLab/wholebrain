@@ -1,0 +1,7 @@
+run("16-bit")
+//run("Brightness/Contrast...");
+run("Apply LUT");
+run("Close");
+run("Rotate 90 Degrees Left");
+close();
+setBatchMode(true); 

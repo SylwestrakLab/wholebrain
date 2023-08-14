@@ -1,0 +1,512 @@
+Max = 65536, Min = 0,
+brain.threshold = 4000,
+resize = 0.025,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <- 2.65
+seg<-segment(imagefile[2], filter= myfilter)
+quartz()
+regi<-registration(imagefile[2], coordinate= fromBregma, filter=seg$filter)
+# Initialize the library packages
+library(wholebrain)
+# Define what section you want to analyze
+mouse = "m3783"
+sectionNumber = '3'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 4000,
+resize = 0.025,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <- 2.48
+seg<-segment(imagefile[1], filter= myfilter)
+seg$filter$brain.threshold
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<-change.corrpoints(regi, 11:23)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,6)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-change.corrpoints(regi, 1:2)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))
+mouse = "m3783"
+sectionNumber = '4'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 4000,
+resize = 0.025,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <- 2.2
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<-change.corrpoints(regi, 32)
+regi<-change.corrpoints(regi, 1)
+regi<-change.corrpoints(regi, 17)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-change.corrpoints(regi, 18:24)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,6)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))
+library(wholebrain)
+# Define what section you want to analyze
+mouse = "m3783"
+sectionNumber = '5'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 4000,
+resize = 0.025,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <- 1.5
+seg<-segment(imagefile[1], filter= myfilter)
+myfilter$brain.threshold<-9400
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+imagefile
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 6400,
+resize = 0.025,
+blur = 12,
+downsample = 0.25)
+fromBregma <- 1.5
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 4000,
+resize = 0.025,
+blur = 12,
+downsample = 0.25)
+seg<-segment(imagefile[1], filter= myfilter)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 4000,
+resize = 0.025,
+blur = 12,
+downsample = 0.25)
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+seg$filter$brain.threshold
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 3000,
+resize = 0.038,
+blur = 12,
+downsample = 0.25)
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<-change.corrpoints(regi, 17)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,12)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<-change.corrpoints(regi, 17)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,12)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-add.corrpoints(regi, 8)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))
+mouse = "m3783"
+sectionNumber = '6'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 3000,
+resize = 0.038,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <- 0.9
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<-change.corrpoints(regi, 16:18)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,8)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-add.corrpoints(regi, 10)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))
+library(wholebrain)
+# Define what section you want to analyze
+mouse = "m3783"
+sectionNumber = '7'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 5742,
+resize = 0.038,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <- 0.8
+seg<-segment(imagefile[1], filter= myfilter)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 3600,
+resize = 0.038,
+blur = 12,
+downsample = 0.25)
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<- add.corrpoints(regi,8)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-change.corrpoints(regi, 1)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))
+mouse = "m3783"
+sectionNumber = '8'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 3600,
+resize = 0.038,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <- 0.7
+seg<-segment(imagefile[1], filter= myfilter)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 3000,
+resize = 0.038,
+blur = 12,
+downsample = 0.25)
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<- add.corrpoints(regi,8)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-remove.corrpoints(regi,38)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,10)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-change.corrpoints(regi, 1)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))
+mouse = "m3783"
+sectionNumber = '9'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 3000,
+resize = 0.038,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <- 0.15
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+fromBregma
+fromBregma <- 0.6
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<- add.corrpoints(regi,16)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-change.corrpoints(regi, 15:18)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))
+library(wholebrain)
+# Define what section you want to analyze
+mouse = "m3783"
+sectionNumber = '10'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 3000,
+resize = 0.038,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <- 0.0
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+fromBregma <-  -0.06
+fromBregma
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<-change.corrpoints(regi, 15:22)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-change.corrpoints(regi, 15:19)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-change.corrpoints(regi, 15:19)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<-change.corrpoints(regi, 14:21)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-remove.corrpoints(regi,16:22)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,10)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-change.corrpoints(regi, 1:5)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))
+mouse = "m3783"
+sectionNumber = '11'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 3000,
+resize = 0.038,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <-  -0.2
+seg<-segment(imagefile[1], filter= myfilter)
+library(wholebrain)
+# Define what section you want to analyze
+mouse = "m3783"
+sectionNumber = '12'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 5000,
+resize = 0.018,
+blur = 12,
+downsample = 0.25)
+fromBregma <-  -0.2
+seg<-segment(imagefile[1], filter= myfilter)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 4000,
+resize = 0.018,
+blur = 12,
+downsample = 0.25)
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+mouse = "m3783"
+sectionNumber = '11'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 5000,
+resize = 0.025,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <-  -0.2
+seg<-segment(imagefile[1], filter= myfilter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 5500,
+resize = 0.025,
+blur = 12,
+downsample = 0.25)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+library(wholebrain)
+# Define what section you want to analyze
+mouse = "m3783"
+sectionNumber = '12'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 3265,
+resize = 0.75,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <-  -0.3
+#segment
+seg<-segment(imagefile[1], filter= seg$filter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<-change.corrpoints(regi, 15:19)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,16)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,2)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))
+mouse = "m3783"
+sectionNumber = '13'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+myfilter<-list(alim = c(1, 1000),
+threshold.range = c(32750, 65636),
+eccentricity = 1000,
+Max = 65536, Min = 0,
+brain.threshold = 3265,
+resize = 0.75,
+blur = 12,
+downsample = 0.25)
+# Determine Section Position
+fromBregma <-  -0.55
+#segment
+seg<-segment(imagefile[1], filter= seg$filter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<-change.corrpoints(regi, 1:2)
+regi<-change.corrpoints(regi, 15:20)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-change.corrpoints(regi, 17)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,16)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,6)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,2)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))
+mouse = "m3783"
+sectionNumber = '14'
+subfolder = paste(mouse, sectionNumber, sep = "-", collapse=NULL)
+# Get images
+folder<-file.path(getwd(), mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+imagename<-list.files(folder)
+fromBregma <-  -0.6
+seg<-segment(imagefile[1], filter= seg$filter)
+quartz()
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter)
+regi<-change.corrpoints(regi, 1:2)
+regi<-change.corrpoints(regi, 15:19)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,12)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,4)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- remove.corrpoints(regi,16:18)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<- add.corrpoints(regi,5)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+regi<-change.corrpoints(regi, 47:48)
+regi<-registration(imagefile[1], coordinate= fromBregma, filter=seg$filter, correspondance=regi)
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+bargraph(dataset)
+save(seg, regi, dataset, file=file.path('BHdata',paste('output_', subfolder,sep = "", collapse=NULL),paste(subfolder, '.Rdata',sep = "", collapse=NULL)))

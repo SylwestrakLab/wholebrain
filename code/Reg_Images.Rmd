@@ -1,0 +1,67 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+# Init.
+```{r setup} 
+library(wholebrain)
+
+```
+# Get images
+Get the image(s) you want to process.
+```{r}
+mouse="m1060"
+sectionNumber = "2"
+subfolder = paste(mouse,sectionNumber,sep = "-", collapse=NULL)
+folder<-file.path(getwd(), "..", mouse,subfolder)
+imagefile<-list.files(folder, full.names=TRUE)
+```
+
+# Segment out neurons and the brain outline from autofluorescence.
+```{r}
+seg<-wholebrain::segment(imagefile)
+```
+# Quickly Plot the images
+```{r}
+plot(seg$soma$x, seg$soma$y,ylim=rev(range(seg$soma$y,asp=1)))
+```
+
+#Registration
+```{r}
+quartz()
+regi<-registration(imagefile, coordinate= 0.14, filter=seg$filter)
+```
+```{r}
+regi<-add.corrpoints(regi, 3)
+```
+Plot Corrected Points
+```{r}
+regi<-registration(imagefile, coordinate= -2.06, filter=seg$filter, correspondance = regi)
+```
+
+# Save out the registration
+```{r}
+save(seg, regi, file='m1060.Rdata')
+```
+
+# Plot Cells on Atlas
+```{r}
+dataset<-inspect.registration(regi, seg, forward.warps = TRUE)
+```
+
+# Save Plots
+```{r}
+mainDir <- file.path(getwd(), mouse,subfolder)
+subDir <- "plots"
+if (file.exists(file.path(mainDir,subDir))){
+} else {
+    dir.create(file.path(mainDir, subDir))
+}
+filename = paste(file.path(getwd(),"plots") , "inspectRegi.pdf",sep = "_", collapse=NULL)
+quartz.save(file.path(saveFolder,filename),type="pdf")
+```
+
+dot.plot(dataset)
+filename = paste(list.files(saveFolder) , "plot.pdf",sep = "_", collapse=NULL)
+quartz.save(file.path(saveFolder,filename),type="pdf")
+

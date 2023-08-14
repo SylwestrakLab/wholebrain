@@ -51,7 +51,7 @@ get.atlas.image<-function(coordinate, directory='TEMPORARY', width=456, plane='c
   
   xmin<-(plane!='sagittal')*(min(EPSatlas$plates[[k]][[1]]@paths$path@x)-97440/2)
   
-  quartz(width= plate.width*11.300 , height= 7.900)
+  windows(width= plate.width*11.300 , height= 7.900)
   par(mar=c(0,0,0,0), bg='black', xaxs='i', yaxs='i')
   plot(EPSatlas$plates[[k]][[1]]@paths$path@x, EPSatlas$plates[[k]][[1]]@paths$path@y, col=0, xlim=c(0, plate.width*97440), ylim=c(0, 68234.56), axes=F)
   if(is.null(right.hemisphere)&(plane!='sagittal') ){
@@ -382,7 +382,7 @@ registration2<- function(input,
     
     #get contours for atlas
     k <- which(abs(coordinate - atlasIndex$mm.from.origin) ==  min(abs(coordinate - atlasIndex$mm.from.origin)))
-    quartz(width= 5.32 , height= 5.98)
+    windows(width= 5.32 , height= 5.98)
     par(mar=c(0,0,0,0), bg='black', xaxs='i', yaxs='i')
     plot(EPSatlas$plates[[k]][[1]]@paths$path@x, EPSatlas$plates[[k]][[1]]@paths$path@y, col=0)
     polygon(EPSatlas$plates[[k]][[2]]@paths$path@x, EPSatlas$plates[[k]][[2]]@paths$path@y, col='white')
@@ -467,7 +467,7 @@ registration2<- function(input,
   scale.factor <- mean(c(532/max(atlas[[1]]@paths$path@x), 598/max(atlas[[1]]@paths$path@y) ) )  # 456/97440 #scale factor needed
   outlines <- list()
   
-  #quartz()
+  #windows()
   #par(mar=c(0, 0, 0, 0))
   #plot(c(0, dim(img)[2]), c(0, dim(img)[1]), axes = F, asp = 1, col = 0, xlab = "", ylab = "", ylim = c(dim(img)[1],   0))
   # rasterImage(img, 0, 0, dim(img)[2], dim(img)[1])
@@ -1188,12 +1188,12 @@ plot.registration<-function(registration, main=NULL, border=rgb(154,73,109,maxCo
 }
 
 
-inspect.registration<-function(registration,segmentation,soma=TRUE, forward.warps=FALSE, batch.mode=FALSE, device=TRUE,cex=0.5, draw.trans.grid=TRUE, width= 12.280488, height=  6.134146){
+inspect.registration<-function(registration,segmentation,soma=TRUE, forward.warps=FALSE, batch.mode=FALSE, device=TRUE,cex=0.5, labelPoints=FALSE, removePoints=NULL, draw.trans.grid=TRUE, width= 12.280488, height=  6.134146){
   if(.Platform$OS.type=="windows" | grepl("linux-gnu", R.version$os) ) {
     batch.mode=TRUE
   }
   if(device){
-    quartz(width= width, height=  height)
+    windows(width= width, height=  height)
     par(yaxs='i',xaxs='i', mfrow=c(1,2), mar=c(4,4,1,1))
   }
   
@@ -1208,6 +1208,10 @@ inspect.registration<-function(registration,segmentation,soma=TRUE, forward.warp
   }
   cat('\nGetting anatomical assignment for segmented objects')
   dataset<-get.cell.ids(registration, segmentation, forward.warp=forward.warps)
+  if (!is.null(removePoints))
+  {
+    dataset<-dataset[-c(removePoints), ] 
+  }
   
   scale.factor<-mean(dim(registration$transformationgrid$mx)/c(registration$transformationgrid$height,registration$transformationgrid$width) )
   
@@ -1226,8 +1230,8 @@ inspect.registration<-function(registration,segmentation,soma=TRUE, forward.warp
   mtext('Dorso-ventral (mm)',side=2,line=1.5)
   mtext('Medio-lateral (mm)',side=1,line=-1.5)
   
-  lapply(1:numPaths, function(x){polygon(outlines[[x]]$xr/scale.factor,outlines[[x]]$yr/scale.factor, border='black', col=as.character(registration$atlas$col[x]) )})
-  lapply(1:numPaths, function(x){polygon(outlines[[x]]$xl/scale.factor,outlines[[x]]$yl/scale.factor, border='black', col=as.character(registration$atlas$col[x]) )})
+  lapply(1:numPaths, function(x){polygon(outlines[[x]]$xr/scale.factor,outlines[[x]]$yr/scale.factor, border='gray', col=as.character(registration$atlas$col[x]) )})
+  lapply(1:numPaths, function(x){polygon(outlines[[x]]$xl/scale.factor,outlines[[x]]$yl/scale.factor, border='gray', col=as.character(registration$atlas$col[x]) )})
   
   hei<-dim(registration$transformationgrid$mx)[1]
   wid<-dim(registration$transformationgrid$mx)[2]
@@ -1282,6 +1286,9 @@ inspect.registration<-function(registration,segmentation,soma=TRUE, forward.warp
   }
   if(soma){
     points(dataset$x, dataset$y, pch=21, bg= dataset$color, col= circle.color, cex=cex)
+    if(labelPoints){
+      text(dataset$x, dataset$y, labels=1: (dim(dataset)[1]), col = 'cyan', cex=0.5, font=2)
+    }
   }
   #lapply(id, function(x){polygon(rois[[x]]$coords, col=rgb(100,163,117,120,maxColorValue=255));text(apply(rois[[x]]$coords,2,mean)[1],apply(rois[[x]]$coords,2,mean)[2],x, cex=0.7, col='white')})
   return(dataset)
@@ -1638,7 +1645,7 @@ custom.registration<-function(input='/Volumes/Seagate Backup Plus Drive/transgen
   ) #100960324_2
   plate.width<-1 #1.159292
   
-  quartz(width= plate.width*11.300 , height= 7.900)
+  windows(width= plate.width*11.300 , height= 7.900)
   par(mar=c(0,0,0,0), bg='black', xaxs='i', yaxs='i')
   plot(atlas[[1]]@paths$path@x, atlas[[1]]@paths$path@y, col=0, xlim=c(0, plate.width*97440), ylim=c(0, 68234.56), axes=F)
   polygon(atlas[[1]]@paths$path@x, atlas[[1]]@paths$path@y, col='white', border='white' )
